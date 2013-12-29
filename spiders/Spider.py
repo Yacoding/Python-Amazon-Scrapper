@@ -1,6 +1,8 @@
 from cStringIO import StringIO
 from logs.LogManager import LogManager
 from spiders import config
+import gc
+import time
 
 __author__ = 'Rabbi'
 
@@ -61,13 +63,26 @@ class Spider:
 #                print self.mycookie
                 buf = StringIO(response.read())
                 data2 = gzip.GzipFile('', 'r', 0, buf).read()
+                response.close()
+                del response
+                gc.collect()
+                del gc.garbage[:]
+                gc.collect()
                 return data2
             else:
-                return self.opener.open(url, urllib.urlencode(parameters), timeout=config.TIMEOUT).read()
+                response = self.opener.open(url, urllib.urlencode(parameters), timeout=config.TIMEOUT)
+                data = response.read()
+                response.close()
+                del response
+                gc.collect()
+                del gc.garbage[:]
+                gc.collect()
+                return data
         except Exception, x:
             print x
             self.logger.debug(x)
             if retry < config.RETRY_COUNT:
+                time.sleep(5)
                 self.fetchData(url, parameters, retry + 1)
         return None
 

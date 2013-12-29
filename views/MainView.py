@@ -66,6 +66,7 @@ class Form(QMainWindow):
 
 
     def notifyInfo(self, data):
+        self.browser.document().setMaximumBlockCount(1000)
         self.browser.append(data)
 
 

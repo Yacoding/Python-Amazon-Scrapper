@@ -1,6 +1,7 @@
 import re
 from PyQt4.QtCore import QThread, pyqtSignal
 import time
+from db.DbHelper import DbHelper
 from logs.LogManager import LogManager
 from utils.Csv import Csv
 from utils.Utils import Utils
@@ -33,7 +34,9 @@ class AmazonScrapper(QThread):
         self.dupUrls = []
         self.total = len(self.dupCsvRows) - 1
         self.scrapUrl = None
-        self.totalData = 0
+        self.dbHelper = DbHelper('amazon.db')
+        self.totalData = self.dbHelper.getTotalProduct()
+        # self.productList = []
 
     def run(self):
         # self.scrapProductDetail(
@@ -41,6 +44,9 @@ class AmazonScrapper(QThread):
         #     '', '', '', '')
         # return
         # print self.urlList
+        # self.scrapReformatData('http://www.amazon.com/s/ref=sr_pg_3?rh=n%3A672123011%2Cn%3A%21672124011%2Cn%3A15743631%2Cn%3A3421075011&bbn=15743631&ie=UTF8&qid=1388303822&lo=shoes', 8)
+        # return
+        self.dbHelper.createTable('product')
         if self.urlList is not None and len(self.urlList):
             for url in self.urlList:
                 if len(url) > 0:
@@ -56,38 +62,53 @@ class AmazonScrapper(QThread):
                         imUrl = url
                     self.total = 0
                     print 'URL: ' + str(imUrl)
-                    self.scrapReformatData(imUrl)
+                    sortList = ['relevance-fs-browse-rank', 'price', '-price', 'reviewrank_authority', 'date-desc-rank']
+                    for sort in sortList:
+                        self.scrapReformatData(imUrl, sort)
                     self.notifyAmazon.emit(
                         '<font color=red><b>Finish data for Amazon Main URL: %s</b></font><br /><br />' % url)
         self.notifyAmazon.emit('<font color=red><b>Amazon Data Scraping finished.</b></font>')
 
     def reformatUrl(self, url):
+        print url
         data = self.spider.fetchData(url)
         data = self.regex.reduceNewLine(data)
         data = self.regex.reduceBlankSpace(data)
 
         if data and len(data) > 0:
             soup = BeautifulSoup(data)
+            if soup.find('span', class_='iltgl2 dkGrey').text.strip().lower() == 'Image'.lower():
+                soup.clear()
+                soup = None
+                return url
+
             imageLink = [x.a.get('href') for x in soup.find_all('span', {'class': 'iltgl2'}) if x.a is not None]
             if imageLink is not None and len(imageLink) > 0 and imageLink[0] is not None and len(imageLink) > 0:
                 imageLink = self.regex.replaceData('(?i)&amp;', '&', imageLink[0])
                 print 'Image URL: ' + self.mainUrl + imageLink
                 self.logger.debug('Image URL: ' + self.mainUrl + imageLink)
                 return self.mainUrl + imageLink
+        return None
 
-    def scrapReformatData(self, url, page=1, retry=0):
-        mainUrl = url + "&page=" + str(page)
+    def scrapReformatData(self, url, sort='relevance-fs-browse-rank', page=1, retry=0):
+        mainUrl = url + "&page=" + str(page) + "&sort=" + sort
         print 'Main URL: ' + mainUrl
         self.notifyAmazon.emit('<font color=green><b>Amazon URL: %s</b></font>' % mainUrl)
         data = self.spider.fetchData(mainUrl)
         if data and len(data) > 0:
             if self.scrapData(data, self.totalData) is False and retry < 4:
                 self.notifyAmazon.emit('<Font color=green><b>Retry... as it gets less data than expected.</b></font>')
-                return self.scrapReformatData(url, page, retry + 1)
+                del data
+                # data = None
+                return self.scrapReformatData(url, sort, page, retry + 1)
 
             soup = BeautifulSoup(data)
-            if soup.find('span', id='pagnNextString') is not None:
-                return self.scrapReformatData(url, page + 1, retry=0)
+            if soup.find('a', id='pagnNextLink') is not None:
+                del soup
+                del data
+                # soup = None
+                # data = None
+                return self.scrapReformatData(url, sort, page + 1, retry=0)
 
     def scrapData(self, data, totalCountForPage):
         data = self.regex.reduceNewLine(data)
@@ -99,6 +120,23 @@ class AmazonScrapper(QThread):
         elif len(soup.find_all('li', id=re.compile('^result_\d+$'))) > 0:
             results = soup.find_all('li', id=re.compile('^result_\d+$'))
             print 'Total results li pattern: ' + str(len(results))
+            for productName in results:
+                if self.dbHelper.searchProduct(productName.get('name').strip()) is False:
+                    self.dbHelper.saveProduct(productName.get('name').strip())
+                    self.totalData += 1
+                else:
+                    print 'Duplicate product found.'
+                    self.notifyAmazon.emit(
+                        '<font color=red><b>Duplicate product: [%s]</b></font>' % productName.get('name'))
+                    # if productName.get('name') is not None and productName.get('name') not in self.productList:
+                    #     self.productList.append(productName.get('name'))
+            print 'Total products scrapped: ', str(self.totalData)
+            self.notifyAmazon.emit('<font color=black><b>Total scrapped data: [%s]</b></font>' % str(self.totalData))
+            del soup
+            del data
+            soup = None
+            data = None
+            return True
 
         if results is not None:
             print '\nScrapping from result page: '
@@ -249,7 +287,8 @@ class AmazonScrapper(QThread):
                     subTitle = self.regex.getSearchedData(
                         '(?i)<span class="brandLink"> <a href="[^"]*?"[^>]*?>([^<]*)</a>', data)
                 elif self.regex.isFoundPattern('(?i)<span >\s*?by[^<]*<a href="[^"]*"[^>]*?>([^<]*)</a>', data):
-                    subTitle = self.regex.getSearchedData('(?i)<span >\s*?by[^<]*<a href="[^"]*"[^>]*?>([^<]*)</a>',data)
+                    subTitle = self.regex.getSearchedData('(?i)<span >\s*?by[^<]*<a href="[^"]*"[^>]*?>([^<]*)</a>',
+                                                          data)
                 print "Sub TItle: " + subTitle
 
             ## SKU for Product
@@ -285,7 +324,7 @@ class AmazonScrapper(QThread):
             print 'WEIGHT: ', weight
 
             images = self.scrapImages(data)
-            print 'SCRAPED IMAGES: ',  images
+            print 'SCRAPED IMAGES: ', images
             image = ''
             if productImage is not None:
                 image = productImage

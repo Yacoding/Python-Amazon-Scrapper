@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c69cc6d0-9563-45df-86a6-3e2f8fa36add" name="Default" comment="" />
+    <list default="true" id="c69cc6d0-9563-45df-86a6-3e2f8fa36add" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/DbHelper.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/works/AmazonScrapper.py" afterPath="$PROJECT_DIR$/works/AmazonScrapper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.py" afterPath="$PROJECT_DIR$/Main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/MainView.py" afterPath="$PROJECT_DIR$/views/MainView.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spiders/Spider.py" afterPath="$PROJECT_DIR$/spiders/Spider.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/works/test.txt" afterPath="$PROJECT_DIR$/works/test.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="AmazonProject.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/AmazonScrapper.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1387825829879" ignored="false" />
+    <file path="/AmazonScrapper.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1388334967024" ignored="false" />
     <file path="$PROJECT_DIR$/../../YoutubeProj/YoutubeScrapper.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1387295422777" ignored="false" />
     <file path="$PROJECT_DIR$/../../YtDownloader/YtDownloadManager.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1387297456807" ignored="false" />
     <file path="$PROJECT_DIR$/../../YtDownloader/YtDownloader.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1387297560002" ignored="false" />
-    <file path="/setup.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1387826615455" ignored="false" />
+    <file path="/setup.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1388321311967" ignored="false" />
     <file path="/test.txt" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1387830668657" ignored="false" />
-    <file path="/Dummy.txt" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1387831093807" ignored="false" />
+    <file path="/Dummy.txt" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1388322496493" ignored="false" />
+    <file path="/Main.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1388322509230" ignored="false" />
+    <file path="/DbHelper.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1388326271370" ignored="false" />
+    <file path="/MainView.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1388330689290" ignored="false" />
+    <file path="/Spider.py" changelist="c69cc6d0-9563-45df-86a6-3e2f8fa36add" time="1388335539605" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +48,66 @@
     <favorites_list name="AmazonProject" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Main.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="0" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbHelper.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/DbHelper.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="26" selection-start="2276" selection-end="2276" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/works/test.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="26" selection-start="593" selection-end="755" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainView.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/MainView.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="68" column="57" selection-start="2470" selection-end="2470" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AmazonScrapper.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/works/AmazonScrapper.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="96" column="30" selection-start="4352" selection-end="4352" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Spider.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spiders/Spider.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="96" column="21" selection-start="3558" selection-end="3558" vertical-scroll-proportion="0.86440676">
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -52,10 +125,13 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Main.py" />
         <option value="$PROJECT_DIR$/works/test.txt" />
-        <option value="$PROJECT_DIR$/works/AmazonScrapper.py" />
         <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/Main.py" />
+        <option value="$PROJECT_DIR$/db/DbHelper.py" />
+        <option value="$PROJECT_DIR$/views/MainView.py" />
+        <option value="$PROJECT_DIR$/works/AmazonScrapper.py" />
+        <option value="$PROJECT_DIR$/spiders/Spider.py" />
       </list>
     </option>
   </component>
@@ -120,7 +196,49 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="logs" />
+              <option name="myItemId" value="works" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AmazonProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Amazon-Scrapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AmazonProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Amazon-Scrapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AmazonProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Amazon-Scrapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -129,12 +247,28 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="154" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="154" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="154" />
     <property name="recentsLimit" value="5" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="154" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="828" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="829" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="154" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="153" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
@@ -146,7 +280,7 @@
       <PyConsoleSettings />
     </option>
   </component>
-  <component name="RunManager" selected="Python.setup">
+  <component name="RunManager" selected="Python.Main">
     <configuration default="false" name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -241,8 +375,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.setup" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Main" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Main" />
+        <item index="1" class="java.lang.String" itemvalue="Python.setup" />
       </list>
     </recent_temporary>
   </component>
@@ -281,12 +415,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991317" sideWeight="0.64354837" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18712121" sideWeight="0.6456559" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20227273" sideWeight="0.64735943" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35434413" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35264054" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -352,21 +486,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/works/AmazonScrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="18" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/works/AmazonScrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="96" column="8" selection-start="4121" selection-end="4121" vertical-scroll-proportion="0.0" />
@@ -402,11 +521,6 @@
         <state line="7" column="0" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/MainView.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="36" selection-start="225" selection-end="225" vertical-scroll-proportion="0.27370304" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logs/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -414,22 +528,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="19" selection-start="331" selection-end="331" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/works/test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="216" selection-end="397" vertical-scroll-proportion="0.05" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/works/AmazonScrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="244" column="73" selection-start="12488" selection-end="12488" vertical-scroll-proportion="12.2" />
+        <state line="9" column="58" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="140" selection-end="140" vertical-scroll-proportion="0.3371105" />
+        <state line="2" column="0" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/PyQt4/QtGui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45371" column="8" selection-start="1598519" selection-end="1598519" vertical-scroll-proportion="0.3313783">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/MainView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="57" selection-start="2470" selection-end="2470" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/DbHelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="26" selection-start="2276" selection-end="2276" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/works/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="26" selection-start="593" selection-end="755" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/works/AmazonScrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="30" selection-start="4352" selection-end="4352" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spiders/Spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="21" selection-start="3558" selection-end="3558" vertical-scroll-proportion="0.86440676">
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

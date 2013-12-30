@@ -60,7 +60,6 @@ class Spider:
             if parameters is None:
                 response = self.opener.open(url, timeout=config.TIMEOUT)
                 self.mycookie = response.headers.get('Set-Cookie')
-#                print self.mycookie
                 buf = StringIO(response.read())
                 data2 = gzip.GzipFile('', 'r', 0, buf).read()
                 response.close()
@@ -71,13 +70,18 @@ class Spider:
                 return data2
             else:
                 response = self.opener.open(url, urllib.urlencode(parameters), timeout=config.TIMEOUT)
-                data = response.read()
-                response.close()
-                del response
-                gc.collect()
-                del gc.garbage[:]
-                gc.collect()
-                return data
+                if response is not None:
+                    data = response.read()
+                    response.close()
+                    del response
+                    gc.collect()
+                    del gc.garbage[:]
+                    gc.collect()
+                    return data
+                else:
+                    if retry < config.RETRY_COUNT:
+                        time.sleep(5)
+                        self.fetchData(url, parameters, retry + 1)
         except Exception, x:
             print x
             self.logger.debug(x)

@@ -2,6 +2,7 @@ __author__ = 'Rabbi'
 
 import re
 
+
 class Regex:
     def __init__(self):
         pass
@@ -22,18 +23,24 @@ class Regex:
         return re.findall(pattern, data)
 
     def getSearchedData(self, pattern, data):
-        searchedData = re.search(pattern, data)
-        if searchedData:
-            return searchedData.group(1)
+        try:
+            searchedData = re.search(pattern, data)
+            if searchedData:
+                return searchedData.group(1)
+        except Exception, x:
+            print x
         return ''
 
     def getSearchedDataGroups(self, pattern, data):
         return re.search(pattern, data)
 
     def isFoundPattern(self, pattern, data):
-        matchedData = re.search(pattern, data)
-        if matchedData:
-            return True
+        try:
+            matchedData = re.search(pattern, data)
+            if matchedData:
+                return True
+        except Exception, x:
+            print x
         return False
 
     def replaceData(self, pattern, replace, data):

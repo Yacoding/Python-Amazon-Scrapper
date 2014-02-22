@@ -6,6 +6,7 @@ from works.AmazonScrapper import AmazonScrapper
 
 __author__ = 'Rabbi'
 
+
 class Form(QMainWindow):
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)
@@ -66,8 +67,11 @@ class Form(QMainWindow):
 
 
     def notifyInfo(self, data):
-        self.browser.document().setMaximumBlockCount(1000)
-        self.browser.append(data)
+        try:
+            self.browser.document().setMaximumBlockCount(1000)
+            self.browser.append(data)
+        except Exception, x:
+            print x.message
 
 
 class MainView:

@@ -36,7 +36,7 @@ class Regex:
 
     def isFoundPattern(self, pattern, data):
         try:
-            matchedData = re.search(pattern, data)
+            matchedData = re.search(pattern, unicode(data))
             if matchedData:
                 return True
         except Exception, x:

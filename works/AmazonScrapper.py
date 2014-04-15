@@ -37,6 +37,9 @@ class AmazonScrapper(QThread):
 
     def run(self, retry=0):
         try:
+            # self.scrapProductDetail(
+            #     'http://www.amazon.com/Casio-MRW-S300H-8BVCF-Solar-Powered-Analog/dp/B00ELALKH2/ref=sr_1_544/184-7248556-2619812?s=watches&ie=UTF8&qid=1397580509&sr=1-544')
+            # return
             if self.urlList is not None and len(self.urlList):
                 for url in self.urlList:
                     if len(url) > 0:
@@ -101,7 +104,7 @@ class AmazonScrapper(QThread):
                 data = self.regex.reduceBlankSpace(data)
                 if self.scrapData(data) is False and retry < 4:
                     self.notifyAmazon.emit(
-                        '<Font color=green><b>Retry... as it gets less data than expected.</b></font>')
+                        '<font color=green><b>Retry... as it gets less data than expected.</b></font>')
                     del data
                     return self.scrapReformatData(url, sort, page, retry + 1)
                 else:
@@ -123,19 +126,21 @@ class AmazonScrapper(QThread):
             print data
             results = None
 
-            soup = BeautifulSoup(data, from_encoding='ISO-8859-1')
+            soup = BeautifulSoup(data, from_encoding='ISO-8859-1,utf-8')
             if len(soup.find_all('div', id=re.compile('^result_\d+$'))) > 0:
-                print 'Total results div pattern: ' + str(len(soup.find_all('div', {'id': re.compile('^result_\d+$')})))
                 results = soup.find_all('li', id=re.compile('^result_\d+$'))
+                print 'Total results div pattern: ' + str(len(results))
+                self.notifyAmazon.emit('<font><b>Total results in current page: %s</b><font>' % str(len(results)))
             elif len(soup.find_all('li', id=re.compile('^result_\d+$'))) > 0:
                 results = soup.find_all('li', id=re.compile('^result_\d+$'))
                 print 'Total results li pattern: ' + str(len(results))
+                self.notifyAmazon.emit('<font><b>Total results in current page: %s</b><font>' % str(len(results)))
 
             if results is not None and len(results) > 0:
                 for result in results:
                     productId = result.get('name').strip()
                     if self.dbHelper.searchProduct(productId, self.category) is False:
-                        if self.scrapDataFromResultPage(result):
+                        if self.scrapDataFromResultPage(result, productId):
                             self.dbHelper.saveProduct(productId, self.category)
                     else:
                         print 'Duplicate product found [%s]' % productId
@@ -149,7 +154,7 @@ class AmazonScrapper(QThread):
             self.logger.error('Exception at scrap data: ', x.message)
         return False
 
-    def scrapDataFromResultPage(self, data):
+    def scrapDataFromResultPage(self, data, sku='N/A'):
         try:
             if data and len(data) > 0:
                 print 'Data: '
@@ -163,12 +168,13 @@ class AmazonScrapper(QThread):
                 ## Scrapping Title
                 if data.find('span', class_='lrg bold') is not None:
                     title = data.find('span', class_='lrg bold').text
+                print title
 
                 ## Scrapping SubTitle
-                if self.regex.isFoundPattern('(?i)<span class="med reg"[^>]*?>\s*?by.*?</span>', data):
-                    subTitle = self.regex.getSearchedData('(?i)<span class="med reg"[^>]*?>\s*?by(.*?)</span>', data)
-                elif self.regex.isFoundPattern('(?i)<span class="ptBrand">by.*?</span>', data):
-                    subTitle = self.regex.getSearchedData('(?i)<span class="ptBrand">by(.*?)</span>', data)
+                if self.regex.isFoundPattern(r'(?i)<span class="med reg"[^>]*?>\s*?by.*?</span>', data):
+                    subTitle = self.regex.getSearchedData(r'(?i)<span class="med reg"[^>]*?>\s*?by(.*?)</span>', data)
+                elif self.regex.isFoundPattern(r'(?i)<span class="ptBrand">by.*?</span>', data):
+                    subTitle = self.regex.getSearchedData(r'(?i)<span class="ptBrand">by(.*?)</span>', data)
 
                 if subTitle is not None:
                     subTitle = self.regex.replaceData('(?i)<a href=[^>]*?>', '', subTitle)
@@ -192,14 +198,14 @@ class AmazonScrapper(QThread):
                     url = data.find('h3', class_='newaps').find('a').get('href')
 
                 if url is not None:
-                    self.scrapProductDetail(url, title, subTitle, price, image)
+                    self.scrapProductDetail(url, title, subTitle, price, image, sku)
                     return True
         except Exception, x:
             print x
             self.logger.error('Exception at scrap data from result page: ', x.message)
         return False
 
-    def scrapProductDetail(self, url, title, subTitle, price, productImage):
+    def scrapProductDetail(self, url, title='', subTitle='', price='', productImage='', sku='N/A'):
         try:
             print 'Product URL: ', url
             self.notifyAmazon.emit('<font color=green><b>Product Details URL [%s].</b></font>' % url)
@@ -208,7 +214,7 @@ class AmazonScrapper(QThread):
                 data = self.regex.reduceNewLine(data)
                 data = self.regex.reduceBlankSpace(data)
 
-                soup = BeautifulSoup(data, from_encoding='iso-8859-8')
+                soup = BeautifulSoup(data, from_encoding='iso-8859-8,utf-8')
                 productSpec = None
                 if soup.find('div', id='detailBullets_feature_div') is not None:
                     productSpec = soup.find('div', id='detailBullets_feature_div').find_all('span',
@@ -231,7 +237,7 @@ class AmazonScrapper(QThread):
                     print "Sub Title: " + subTitle
 
                 ## SKU for Product
-                sku = 'N/A'
+                # sku = 'N/A'
                 if productSpec is not None:
                     sku = self.scrapProductSpec(productSpec, 'ASIN')
                 elif self.regex.isFoundPattern('(?i)<li><b>ASIN:\s*?</b>([^<]*)<', data):
@@ -321,7 +327,7 @@ class AmazonScrapper(QThread):
                     for imageChunk in imageChunks:
                         imageChunk = self.regex.getSearchedData('(?i)\((.*?)\)', imageChunk)
                         image = self.regex.getSearchedData('(?i)(http://ecx.images-amazon.com/images/I/[^.]*)\._.*?$'
-                            , imageChunk)
+                                                           , imageChunk)
                         if image and len(image) > 0:
                             image += '.jpg'
                             if image not in images:
@@ -380,7 +386,7 @@ class AmazonScrapper(QThread):
                     '(?i)<div customfunctionname="[^"]*" class="[^"]*" id="thumbs-image"[^>]*?>(.*?)</div>', data)
                 if imageChunks and len(imageChunks) > 0:
                     images = self.regex.getAllSearchedData('(?i)src="(http://ecx.images-amazon.com/images/I/[^"]*)"'
-                        , imageChunks)
+                                                           , imageChunks)
                     for image in images:
                         if image not in images:
                             images.append(image)
@@ -390,7 +396,7 @@ class AmazonScrapper(QThread):
                     data)
                 if imageChunks and len(imageChunks) > 0:
                     images = self.regex.getAllSearchedData('(?i)src="(http://ecx.images-amazon.com/images/I/[^"]*)"'
-                        , imageChunks)
+                                                           , imageChunks)
                     for image in images:
                         if image not in images:
                             images.append(image)
